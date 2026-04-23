@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Praful Kumar — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--navy-soft:#1e3a5f;
+  --gold:#c9a84c;--gold-light:#e8c97a;
+  --cream:#f5f0e8;--cream-dark:#ece5d6;
+  --white:#ffffff;--border:rgba(10,22,40,0.12);
+  --text-main:#1a1a2e;--text-muted:#5a6070;--text-light:#8a95a3;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text-main);line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,240,232,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--navy)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:.4rem 1.1rem;background:var(--navy);color:var(--cream);border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--navy-soft)}
+
+/* HERO — no min-height, just content-fit */
+.hero{display:grid;grid-template-columns:1fr 1fr;padding-top:60px}
+.hero-left{background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:4rem 4rem 4rem 5rem;position:relative;overflow:hidden}
+.hero-left::before{content:'';position:absolute;top:-70px;right:-70px;width:260px;height:260px;border:1px solid rgba(201,168,76,.18);border-radius:50%}
+.hero-left::after{content:'';position:absolute;bottom:50px;left:50px;width:100px;height:100px;border:1px solid rgba(201,168,76,.12);border-radius:50%}
+.hero-tag{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,5vw,4.4rem);line-height:1.06;color:var(--white);margin-bottom:1.2rem}
+.hero-name em{font-style:italic;color:var(--gold-light)}
+.hero-desc{font-size:.95rem;font-weight:300;color:rgba(245,240,232,.7);max-width:370px;margin-bottom:2rem;line-height:1.85}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{padding:.65rem 1.7rem;background:var(--gold);color:var(--navy);font-size:.77rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-ghost{padding:.65rem 1.7rem;background:transparent;color:var(--cream);font-size:.77rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(245,240,232,.3);border-radius:4px;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+.hero-right{background:var(--cream-dark);display:flex;flex-direction:column;justify-content:center;padding:4rem 5rem 4rem 4rem;gap:1.8rem}
+.avail-badge{display:inline-flex;align-items:center;gap:.5rem;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:20px;padding:.4rem 1rem;font-size:.75rem;font-weight:500;color:#2e7d32;width:fit-content}
+.dot{width:8px;height:8px;border-radius:50%;background:#43a047;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--navy);line-height:1;margin-bottom:.25rem}
+.stat-label{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.tech-preview{background:var(--navy);border-radius:8px;padding:1.3rem 1.5rem}
+.tech-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.tech-pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.pill{font-family:'DM Mono',monospace;font-size:.68rem;padding:.24rem .7rem;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);border-radius:4px;color:var(--gold-light)}
+
+section{padding:5rem 5rem}
+.sec-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
+.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3vw,2.7rem);color:var(--navy);margin-bottom:.9rem;line-height:1.15}
+.sec-rule{width:44px;height:3px;background:var(--gold);margin-bottom:2.8rem}
+
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:4rem;align-items:start}
+.about-text{font-size:.95rem;color:var(--text-muted);line-height:1.9}
+.about-text p+p{margin-top:1rem}
+.info-card{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1rem}
+.info-card-title{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--navy);margin-bottom:.3rem}
+.info-card-sub{font-size:.82rem;color:var(--text-muted);line-height:1.6}
+.info-card-meta{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--gold);margin-top:.5rem}
+.contact-row{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+.contact-item{display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.contact-item:hover{color:var(--navy)}
+.contact-item svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0}
+
+#skills{background:var(--cream)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.skill-group{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.sg-title{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.sk{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.sk-name{font-size:.85rem;color:var(--text-muted)}
+.sk-bar{width:76px;height:4px;background:var(--cream-dark);border-radius:2px;overflow:hidden}
+.sk-fill{height:100%;background:var(--navy);border-radius:2px}
+
+#projects{background:var(--white)}
+.proj-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.proj-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:2.2rem;transition:transform .2s,box-shadow .2s}
+.proj-card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(10,22,40,.09)}
+.proj-card.dark{background:var(--navy)}
+.proj-num{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.16em;color:var(--gold);margin-bottom:.9rem}
+.proj-name{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.7rem}
+.proj-card.dark .proj-name{color:var(--white)}
+.proj-live-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.35);border-radius:3px;padding:.18rem .65rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--gold-light);margin-bottom:1rem}
+.proj-desc{font-size:.87rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.2rem}
+.proj-card.dark .proj-desc{color:rgba(245,240,232,.62)}
+.proj-bullets{list-style:none;margin-bottom:1.3rem;display:flex;flex-direction:column;gap:.55rem}
+.proj-bullets li{font-size:.84rem;color:var(--text-muted);line-height:1.7;padding-left:1.1rem;position:relative}
+.proj-bullets li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:.75rem}
+.proj-card.dark .proj-bullets li{color:rgba(245,240,232,.6)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem}
+.proj-tag{font-family:'DM Mono',monospace;font-size:.65rem;padding:.2rem .6rem;background:rgba(10,22,40,.06);border-radius:3px;color:var(--text-muted)}
+.proj-card.dark .proj-tag{background:rgba(201,168,76,.12);color:var(--gold-light)}
+.proj-links{display:flex;gap:.8rem;flex-wrap:wrap}
+.proj-link{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.45rem;padding:.4rem 1rem;border-radius:4px;text-decoration:none;transition:all .2s}
+.proj-link.gh{color:var(--navy);border:1px solid rgba(10,22,40,.2)}
+.proj-link.gh:hover{background:rgba(10,22,40,.05);border-color:var(--navy)}
+.proj-link.live{color:var(--gold);border:1px solid rgba(201,168,76,.4)}
+.proj-link.live:hover{background:rgba(201,168,76,.1)}
+.proj-link svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.proj-metrics{display:flex;gap:2.5rem;margin-bottom:1.4rem}
+.m-val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--white)}
+.m-desc{font-size:.72rem;color:rgba(245,240,232,.45);letter-spacing:.04em}
+
+#experience{background:var(--navy)}
+#experience .sec-title{color:var(--white)}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:rgba(201,168,76,.22)}
+.tl-item{position:relative;margin-bottom:2.5rem}
+.tl-item::before{content:'';position:absolute;left:-2rem;top:7px;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--navy);box-shadow:0 0 0 3px rgba(201,168,76,.22)}
+.tl-period{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:var(--gold);margin-bottom:.35rem}
+.tl-role{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--white);margin-bottom:.18rem}
+.tl-org{font-size:.82rem;color:rgba(245,240,232,.45);margin-bottom:.7rem}
+.tl-desc{font-size:.85rem;color:rgba(245,240,232,.6);line-height:1.8}
+.tl-bullets{list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.4rem}
+.tl-bullets li{font-size:.83rem;color:rgba(245,240,232,.55);line-height:1.7;padding-left:1rem;position:relative}
+.tl-bullets li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:.72rem}
+
+#achievements{background:var(--cream)}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.ach-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.6rem;display:flex;flex-direction:column;gap:.6rem;transition:transform .2s}
+.ach-card:hover{transform:translateY(-2px)}
+.ach-icon{font-size:1.4rem;margin-bottom:.2rem}
+.ach-title{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--navy)}
+.ach-desc{font-size:.82rem;color:var(--text-muted);line-height:1.7}
+.ach-link{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;margin-top:.2rem}
+.ach-link::after{content:'↗';font-size:.7rem}
+
+#contact{background:var(--cream-dark)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-intro{font-size:.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:2rem}
+.clinks{display:flex;flex-direction:column;gap:.9rem}
+.clink{display:flex;align-items:center;gap:1rem;padding:.95rem 1.3rem;background:var(--white);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text-main);transition:all .2s}
+.clink:hover{border-color:var(--navy);transform:translateX(4px)}
+.clink-icon{width:34px;height:34px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.clink-icon svg{width:15px;height:15px;fill:var(--cream)}
+.clink-label{font-size:.7rem;color:var(--text-light);letter-spacing:.06em;text-transform:uppercase}
+.clink-value{font-size:.86rem;font-weight:500;color:var(--navy);word-break:break-all}
+.form{display:flex;flex-direction:column;gap:.95rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.flabel{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.finput,.ftextarea{padding:.7rem .95rem;background:var(--white);border:1px solid var(--border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--text-main);outline:none;transition:border-color .2s}
+.finput:focus,.ftextarea:focus{border-color:var(--navy)}
+.ftextarea{min-height:110px;resize:vertical}
+.fsubmit{padding:.75rem 1.8rem;background:var(--navy);color:var(--cream);font-family:'Outfit',sans-serif;font-size:.77rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;align-self:flex-start;transition:background .2s}
+.fsubmit:hover{background:var(--navy-soft)}
+
+footer{background:var(--navy);padding:1.8rem 5rem;display:flex;align-items:center;justify-content:space-between}
+.foot-name{font-family:'DM Serif Display',serif;font-size:.95rem;color:var(--white)}
+.foot-note{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:rgba(245,240,232,.38)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+
+#activities{background:var(--white)}
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.act-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .2s,box-shadow .2s}
+.act-card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(10,22,40,.08)}
+.act-icon{font-size:1.4rem;margin-bottom:.2rem}
+.act-role{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem}
+.act-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--navy);line-height:1.3}
+.act-org{font-size:.8rem;color:var(--text-muted);line-height:1.6}
+.act-meta{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--text-light);margin-top:.3rem}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:3rem 2rem}
+  .hero-right{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
+  .skills-grid,.ach-grid,.act-grid{grid-template-columns:1fr 1fr}
+  section{padding:3.5rem 2rem}
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  footer{padding:1.8rem 2rem;flex-direction:column;gap:.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Praful Kumar</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Full Stack Developer · Open to Work</div>
+    <h1 class="hero-name">Praful<br><em>Kumar</em></h1>
+    <p class="hero-desc">Computer Science student at GLA University, Mathura — building AI-powered full-stack systems and backend APIs. 300+ DSA problems solved. Ready to contribute from day one.</p>
+
+  </div>
+  <div class="hero-right">
+    <div class="avail-badge"><div class="dot"></div>Available for internships &amp; roles</div>
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num">300+</div><div class="stat-label">DSA Problems</div></div>
+      <div class="stat-card"><div class="stat-num">MERN</div><div class="stat-label">Stack</div></div>
+      <div class="stat-card"><div class="stat-num">AI</div><div class="stat-label">Powered Apps</div></div>
+      <div class="stat-card"><div class="stat-num">IIT</div><div class="stat-label">NPTEL Certified</div></div>
+    </div>
+    <div class="tech-preview">
+      <div class="tech-label">Core Stack</div>
+      <div class="tech-pills">
+        <div class="pill">Java</div>
+        <div class="pill">JavaScript</div>
+        <div class="pill">React.js</div>
+        <div class="pill">Node.js</div>
+        <div class="pill">MongoDB</div>
+        <div class="pill">FastAPI</div>
+        <div class="pill">Python</div>
+        <div class="pill">SQL</div>
+        <div class="pill">DSA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="reveal">
+    <div class="sec-label">Who I Am</div>
+    <h2 class="sec-title">About Me</h2>
+    <div class="sec-rule"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm Praful Kumar, a Computer Science undergraduate at GLA University, Mathura, with a CGPA of 72.9%. I build full-stack and AI-integrated systems — from scalable REST APIs to intelligent job discovery platforms deployed live on the web.</p>
+        <p>My flagship project, the AI-Powered Job Aggregator, combines automated web scraping, FastAPI backend engineering, and a React frontend — deployed on Vercel and Render with real users accessing it today.</p>
+        <p>I've solved 300+ DSA problems on LeetCode, hold NPTEL certifications from IIT Kharagpur, and am actively looking for roles where I can ship meaningful software, grow fast, and work alongside engineers who care about craft.</p>
+        <div class="contact-row">
+          <a class="contact-item" href="tel:+918630356281">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 8630356281
+          </a>
+          <a class="contact-item" href="mailto:aryanrajput1393@gmail.com">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            aryanrajput1393@gmail.com
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/praful-kumar-8611b426b/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            linkedin.com/in/praful-kumar-8611b426b
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="info-card">
+          <div class="info-card-title">B.Tech — Computer Science &amp; Engineering</div>
+          <div class="info-card-sub">GLA University, Mathura</div>
+          <div class="info-card-meta">Expected June 2027 · CGPA 72.9%</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Intermediate (Class XII)</div>
+          <div class="info-card-sub">Shikhar Shishu Sadan School</div>
+          <div class="info-card-meta">May 2022 · 70.6%</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">High School (Class X)</div>
+          <div class="info-card-sub">Shikhar Shishu Sadan School</div>
+          <div class="info-card-meta">May 2020 · 78.0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="reveal">
+    <div class="sec-label">What I Know</div>
+    <h2 class="sec-title">Technical Skills</h2>
+    <div class="sec-rule"></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="sg-title">Languages</div>
+        <div class="sk"><span class="sk-name">Java</span><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div></div>
+        <div class="sk"><span class="sk-name">JavaScript</span><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div>
+        <div class="sk"><span class="sk-name">Python</span><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div></div>
+        <div class="sk"><span class="sk-name">SQL</span><div class="sk-bar"><div class="sk-fill" style="width:72%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title">Frameworks &amp; Tools</div>
+        <div class="sk"><span class="sk-name">React.js</span><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div>
+        <div class="sk"><span class="sk-name">Node.js / Express</span><div class="sk-bar"><div class="sk-fill" style="width:76%"></div></div></div>
+        <div class="sk"><span class="sk-name">FastAPI</span><div class="sk-bar"><div class="sk-fill" style="width:72%"></div></div></div>
+        <div class="sk"><span class="sk-name">REST API Design</span><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title">Database &amp; CS Fundamentals</div>
+        <div class="sk"><span class="sk-name">MongoDB</span><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div>
+        <div class="sk"><span class="sk-name">DBMS</span><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div></div>
+        <div class="sk"><span class="sk-name">DSA</span><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div>
+        <div class="sk"><span class="sk-name">Operating Systems</span><div class="sk-bar"><div class="sk-fill" style="width:68%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="reveal">
+    <div class="sec-label">What I've Built</div>
+    <h2 class="sec-title">Projects</h2>
+    <div class="sec-rule"></div>
+    <div class="proj-grid">
+      <div class="proj-card dark">
+        <div class="proj-num">01 · Featured Project</div>
+        <h3 class="proj-name">AI-Powered Job Aggregator</h3>
+        <div class="proj-live-badge">● Live on Vercel</div>
+        <div class="proj-metrics">
+          <div><div class="m-val">Multi</div><div class="m-desc">Source scraping</div></div>
+          <div><div class="m-val">RT</div><div class="m-desc">Real-time updates</div></div>
+          <div><div class="m-val">AI</div><div class="m-desc">Smart filtering</div></div>
+        </div>
+        <ul class="proj-bullets">
+          <li>Engineered a scalable full-stack job aggregation platform that automatically collects and consolidates job listings from multiple sources via automated background scraping and database caching.</li>
+          <li>Designed optimised REST APIs using FastAPI with efficient database queries and caching mechanisms for faster job retrieval and improved response times.</li>
+          <li>Built intelligent job discovery with advanced filters — keyword, location, date-posted, and relevance sorting — enabling personalised job opportunities at a glance.</li>
+          <li>Developed a responsive React UI and deployed on Render and Vercel, ensuring scalable access and real-time updates.</li>
+        </ul>
+        <div class="proj-tags">
+          <span class="proj-tag">React.js</span><span class="proj-tag">Node.js</span><span class="proj-tag">FastAPI</span><span class="proj-tag">MongoDB</span><span class="proj-tag">Python</span><span class="proj-tag">REST APIs</span><span class="proj-tag">Web Scraping</span><span class="proj-tag">Vercel</span><span class="proj-tag">Render</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link gh" href="https://github.com/prafulrajput14/AI-Job-Aggregator" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            GitHub
+          </a>
+          <a class="proj-link live" href="https://ai-job-aggregator-thzt.vercel.app/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="reveal">
+    <div class="sec-label">Where I've Been</div>
+    <h2 class="sec-title">Experience</h2>
+    <div class="sec-rule" style="background:rgba(201,168,76,.55)"></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">June 2025 – July 2025</div>
+        <div class="tl-role">Trainee — Job Oriented Value-Added Course</div>
+        <div class="tl-org">GLA University, Mathura</div>
+        <ul class="tl-bullets">
+          <li>Researched and implemented basic mitigations against common web vulnerabilities.</li>
+          <li>Documented security findings and recommended mitigations, improving application security posture.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Jan 2026 – Feb 2026</div>
+        <div class="tl-role">Full Stack Developer — Personal Project</div>
+        <div class="tl-org">AI-Powered Job Aggregator · Deployed on Vercel &amp; Render</div>
+        <ul class="tl-bullets">
+          <li>Designed and shipped a complete AI-integrated job platform end-to-end — from backend scraping engine to deployed React frontend.</li>
+          <li>Implemented FastAPI REST APIs, real-time database caching, and intelligent filters for a live user-facing product.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">2023 – Present</div>
+        <div class="tl-role">B.Tech — Computer Science &amp; Engineering</div>
+        <div class="tl-org">GLA University, Mathura · Expected June 2027</div>
+        <div class="tl-desc">Pursuing core CS fundamentals: DSA, DBMS, Operating Systems, Computer Networks, and Software Engineering. Independently building full-stack and AI-powered projects alongside coursework.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="reveal">
+    <div class="sec-label">What I've Earned</div>
+    <h2 class="sec-title">Achievements</h2>
+    <div class="sec-rule"></div>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="ach-icon">⚡</div>
+        <div class="ach-title">300+ DSA Problems</div>
+        <div class="ach-desc">Solved over 300 Data Structures &amp; Algorithms problems on LeetCode — covering arrays, trees, graphs, dynamic programming, and more.</div>
+        <a class="ach-link" href="https://leetcode.com/u/prafulrajput_14/" target="_blank">View LeetCode Profile</a>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🎓</div>
+        <div class="ach-title">NPTEL Certified — IIT Kharagpur</div>
+        <div class="ach-desc">Earned NPTEL certifications from IIT Kharagpur, one of India's premier technical institutes, demonstrating commitment to structured learning.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🚀</div>
+        <div class="ach-title">Live Deployed Product</div>
+        <div class="ach-desc">Shipped the AI Job Aggregator to production on Vercel and Render — a full-stack, AI-integrated platform accessible to real users.</div>
+        <a class="ach-link" href="https://ai-job-aggregator-thzt.vercel.app/" target="_blank">View Live App</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="activities">
+  <div class="reveal">
+    <div class="sec-label">Beyond the Code</div>
+    <h2 class="sec-title">Activities &amp; Leadership</h2>
+    <div class="sec-rule"></div>
+    <div class="act-grid">
+      <div class="act-card">
+        <div class="act-icon">⚙️</div>
+        <div class="act-role">Secretary</div>
+        <div class="act-title">IEEE Student Council</div>
+        <div class="act-org">PR &amp; Marketing Team — GLA University</div>
+        <div class="act-meta">Active Member</div>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🎭</div>
+        <div class="act-role">Coordinator</div>
+        <div class="act-title">SRIJAN Cultural Fest</div>
+        <div class="act-org">GLA University</div>
+        <div class="act-meta">Sep 2024</div>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">💡</div>
+        <div class="act-role">Participant</div>
+        <div class="act-title">GeekVerse 1.0 Hackathon</div>
+        <div class="act-org">Built <strong>SpeciFit</strong> — a fitness-focused application</div>
+        <div class="act-meta">Jan 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="reveal">
+    <div class="sec-label">Let's Talk</div>
+    <h2 class="sec-title">Get in Touch</h2>
+    <div class="sec-rule"></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">I'm actively looking for internships and entry-level software developer roles. If you're building something great and need someone who ships, let's connect.</p>
+        <div class="clinks">
+          <a class="clink" href="mailto:aryanrajput1393@gmail.com">
+            <div class="clink-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div><div class="clink-label">Email</div><div class="clink-value">aryanrajput1393@gmail.com</div></div>
+          </a>
+          <a class="clink" href="tel:+918630356281">
+            <div class="clink-icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
+            <div><div class="clink-label">Phone</div><div class="clink-value">+91 8630356281</div></div>
+          </a>
+          <a class="clink" href="https://www.linkedin.com/in/praful-kumar-8611b426b/" target="_blank">
+            <div class="clink-icon"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></div>
+            <div><div class="clink-label">LinkedIn</div><div class="clink-value">praful-kumar-8611b426b</div></div>
+          </a>
+          <a class="clink" href="https://github.com/prafulrajput14" target="_blank">
+            <div class="clink-icon"><svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg></div>
+            <div><div class="clink-label">GitHub</div><div class="clink-value">github.com/prafulrajput14</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="form">
+        <div class="fg"><label class="flabel">Your Name</label><input class="finput" type="text" placeholder="Recruiter / HR Name"/></div>
+        <div class="fg"><label class="flabel">Email</label><input class="finput" type="email" placeholder="hr@company.com"/></div>
+        <div class="fg"><label class="flabel">Message</label><textarea class="ftextarea" placeholder="Tell me about the role or opportunity..."></textarea></div>
+        <button class="fsubmit" onclick="this.textContent='Message Sent ✓';this.style.background='#2e7d32';setTimeout(()=>{this.textContent='Send Message';this.style.background=''},2500)">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-name">Praful Kumar · Bijnor, UP</div>
+  <div class="foot-note">Full Stack Developer · GLA University · 2027</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
