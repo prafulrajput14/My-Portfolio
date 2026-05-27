@@ -165,21 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // --- Download Resume / Print PDF Action ---
-  const downloadResumeBtn = document.getElementById('btn-resume-download');
-  if (downloadResumeBtn) {
-    downloadResumeBtn.addEventListener('click', () => {
-      // Temporarily change document title to a professional name for PDF file naming
-      const originalTitle = document.title;
-      document.title = "Resume_Praful_Kumar";
-      
-      // Trigger native print flow (CSS @media print styles take over)
-      window.print();
-      
-      // Restore page title
-      document.title = originalTitle;
-    });
-  }
 
 
   // --- Scroll to Top Button ---
