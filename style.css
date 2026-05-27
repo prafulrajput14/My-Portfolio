@@ -399,6 +399,17 @@ body.dark-mode .theme-btn .moon-icon {
   display: flex;
   gap: 1.2rem;
   margin-bottom: 2.5rem;
+  align-items: center;
+}
+
+.btn-hero-contact {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.8rem !important;
+  font-size: 0.95rem !important;
+  border-radius: 22px !important;
 }
 
 .social-icon {
