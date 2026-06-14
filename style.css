@@ -924,6 +924,25 @@ body.dark-mode .theme-btn .moon-icon {
   gap: 0.2rem;
 }
 
+.exp-actions-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+
+.btn-cert {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.btn-cert svg {
+  flex-shrink: 0;
+}
+
 .exp-date {
   font-weight: 600;
   color: var(--text-color);
@@ -1099,10 +1118,24 @@ body.dark-mode .theme-btn .moon-icon {
 
 .project-footer {
   margin-top: auto;
+  display: flex;
+  gap: 0.75rem;
 }
 
 .project-footer .btn {
-  width: 100%;
+  flex: 1;
+  text-align: center;
+}
+
+.project-footer .btn-github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.project-footer .btn-github svg {
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1173,13 +1206,34 @@ body.dark-mode .theme-btn .moon-icon {
   display: block;
 }
 
+.ach-timeline {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--primary-glow);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
 .achievement-card .ach-footer {
   margin-top: auto;
   width: 100%;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .achievement-card .ach-footer .btn {
   width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.achievement-card .ach-footer .btn svg {
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1648,6 +1702,11 @@ footer {
     align-items: flex-start;
   }
   
+  .exp-actions-block {
+    align-items: flex-start;
+    width: 100%;
+  }
+  
   .exp-date-block {
     text-align: left;
     margin-top: 0.3rem;
@@ -1675,6 +1734,10 @@ footer {
   .profile-frame {
     width: 250px;
     height: 250px;
+  }
+  
+  .project-footer {
+    flex-direction: column;
   }
   
   .contact-photo-frame {
