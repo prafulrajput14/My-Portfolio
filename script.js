@@ -138,17 +138,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Active Nav Highlighting on Scroll ---
   const sections = document.querySelectorAll('section');
+  const navbarHeight = 80; // matches scroll-padding-top in CSS
   
-  window.addEventListener('scroll', () => {
-    let current = '';
+  function updateActiveNav() {
     const scrollY = window.scrollY;
+    let current = '';
 
+    // Find which section the user is currently viewing
+    // by checking if scrollY + navbar offset falls within the section
     sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
+      const sectionTop = section.offsetTop - navbarHeight - 10;
+      const sectionBottom = sectionTop + section.offsetHeight;
       
-      // Calculate active section based on scroll position + offset
-      if (scrollY >= (sectionTop - 150)) {
+      if (scrollY >= sectionTop && scrollY < sectionBottom) {
         current = section.getAttribute('id');
       }
     });
@@ -159,7 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.add('active');
       }
     });
-  });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  // Run once on load to set initial active state
+  updateActiveNav();
 
 
 
