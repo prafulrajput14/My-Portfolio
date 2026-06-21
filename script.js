@@ -138,33 +138,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Active Nav Highlighting on Scroll ---
   const sections = document.querySelectorAll('section');
-  const navbarHeight = 80; // matches scroll-padding-top in CSS
   
+  // Set active nav link on click immediately for instant feedback
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
   function updateActiveNav() {
-    const scrollY = window.scrollY;
-    let current = '';
+    // The point just below the fixed navbar
+    const checkPoint = window.scrollY + 90;
+    let currentSection = '';
 
-    // Find which section the user is currently viewing
-    // by checking if scrollY + navbar offset falls within the section
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - navbarHeight - 10;
-      const sectionBottom = sectionTop + section.offsetHeight;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
       
-      if (scrollY >= sectionTop && scrollY < sectionBottom) {
-        current = section.getAttribute('id');
+      // Check if our checkpoint falls within this section
+      if (checkPoint >= sectionTop && checkPoint < sectionTop + sectionHeight) {
+        currentSection = section.getAttribute('id');
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
+    if (currentSection) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    }
   }
 
   window.addEventListener('scroll', updateActiveNav);
-  // Run once on load to set initial active state
   updateActiveNav();
 
 

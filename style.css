@@ -92,7 +92,6 @@ img {
 section {
   padding: 6rem 0;
   border-bottom: 1px solid var(--border-color);
-  scroll-margin-top: 80px;
 }
 
 .section-title {
