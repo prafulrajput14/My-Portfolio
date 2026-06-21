@@ -139,29 +139,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Active Nav Highlighting on Scroll ---
   const sections = document.querySelectorAll('section');
   
-  const navObserverOptions = {
-    root: null,
-    threshold: 0.3,
-    rootMargin: '-70px 0px -30% 0px' // accounts for navbar height
-  };
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollY = window.scrollY;
 
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        });
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      // Calculate active section based on scroll position + offset
+      if (scrollY >= (sectionTop - 150)) {
+        current = section.getAttribute('id');
       }
     });
-  }, navObserverOptions);
 
-  sections.forEach(sec => {
-    navObserver.observe(sec);
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
   });
 
 
