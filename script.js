@@ -138,29 +138,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Active Nav Highlighting on Scroll ---
   const sections = document.querySelectorAll('section');
-  
-  // Set active nav link on click immediately for instant feedback
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinks.forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
+  const navHeight = 80;
 
   function updateActiveNav() {
-    // The point just below the fixed navbar
-    const checkPoint = window.scrollY + 90;
     let currentSection = '';
 
     sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      
-      // Check if our checkpoint falls within this section
-      if (checkPoint >= sectionTop && checkPoint < sectionTop + sectionHeight) {
+      const rect = section.getBoundingClientRect();
+      // rect.top is relative to the viewport.
+      // When a section is currently in view, its top is near or above the navbar, 
+      // and its bottom is below the navbar. We use navHeight + a small buffer (e.g. 50px).
+      if (rect.top <= (navHeight + 50) && rect.bottom > (navHeight + 50)) {
         currentSection = section.getAttribute('id');
       }
     });
+
+    // Fallback if at the very top or bottom of page
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+      currentSection = sections[sections.length - 1].getAttribute('id');
+    }
 
     if (currentSection) {
       navLinks.forEach(link => {
